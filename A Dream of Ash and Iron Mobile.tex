@@ -1,0 +1,212 @@
+% ============================================================================
+%  A DREAM OF ASH AND IRON -- Tablet / Mobile Version
+%  Compile with: xelatex "A Dream of Ash and Iron Mobile.tex"
+%  (run twice for correct page numbering)
+%  Optimized for tablet and mobile screens (A4, single-sided)
+% ============================================================================
+
+\documentclass[12pt,oneside]{book}
+
+% ---------------------------------------------------------------------------
+% FONT -- EB Garamond via fontspec (requires xelatex or lualatex)
+% ---------------------------------------------------------------------------
+\usepackage{fontspec}
+\setmainfont{EBGaramond}[
+  Path           = ./fonts/,
+  Extension      = .otf,
+  UprightFont    = *-Regular,
+  ItalicFont     = *-Italic,
+  BoldFont       = *-Bold,
+  BoldItalicFont = *-BoldItalic
+]
+
+% Generous leading for comfortable on-screen reading.
+\usepackage{setspace}
+\setstretch{1.25}
+
+% ---------------------------------------------------------------------------
+% PAGE COLOUR -- Champagne / Elegant Cream (#F4EBD0)
+% ---------------------------------------------------------------------------
+\usepackage{xcolor}
+\definecolor{creampage}{HTML}{F4EBD0}
+\pagecolor{creampage}
+
+% ---------------------------------------------------------------------------
+% GEOMETRY -- A4 (210mm x 297mm), single-sided, comfortable screen margins
+% ---------------------------------------------------------------------------
+\usepackage[
+  a4paper,
+  margin=0.75in,
+  top=0.8in,
+  bottom=0.85in
+]{geometry}
+
+% ---------------------------------------------------------------------------
+% GRAPHICS
+% ---------------------------------------------------------------------------
+\usepackage{graphicx}
+
+% ---------------------------------------------------------------------------
+% FULL-BLEED IMAGE PAGES
+% ---------------------------------------------------------------------------
+\usepackage{eso-pic}
+\newcommand{\fullbleedimage}[1]{%
+  \AddToShipoutPictureBG*{%
+    \AtPageLowerLeft{%
+      \makebox(0,0)[bl]{\includegraphics[width=\paperwidth,height=\paperheight]{#1}}%
+    }%
+  }%
+}
+
+% ---------------------------------------------------------------------------
+% PAGE NUMBERS -- bottom centre
+% ---------------------------------------------------------------------------
+\usepackage{fancyhdr}
+\pagestyle{plain}
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \fancyfoot[C]{\small\thepage}%
+  \renewcommand{\headrulewidth}{0pt}%
+  \renewcommand{\footrulewidth}{0pt}%
+}
+
+% ---------------------------------------------------------------------------
+% CHAPTER HEADINGS
+% ---------------------------------------------------------------------------
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+  {\centering\normalfont}
+  {}
+  {0pt}
+  {\Large\scshape}
+\titlespacing*{\chapter}{0pt}{0pt}{40pt}
+
+% Custom commands for chapter heading blocks
+\newcommand{\novelchapter}[3]{%
+  \par\vspace{24pt}
+  \begin{center}
+    \rule{0.18\textwidth}{0.3pt}\enspace{\large ❦}\enspace\rule{0.18\textwidth}{0.3pt}
+  \end{center}
+  \vspace{10pt}
+  \chapter*{}%
+  \vspace*{0.05\textheight}%
+  \ifx&#3&\else\chapterimage{#3}\fi
+  \vspace{10pt}
+  {\centering\Large\scshape #1 \par}%
+  \vspace{6pt}
+  {\centering\large\itshape #2 \par}%
+  \vspace{28pt}%
+}
+\newcommand{\novelchapterprologue}[2]{%
+  \chapter*{}%
+  \vspace*{0.05\textheight}%
+  \ifx&#2&\else\chapterimage{#2}\fi
+  \vspace{10pt}
+  {\centering\Large\scshape #1 \par}%
+  \vspace{28pt}%
+}
+
+% ---------------------------------------------------------------------------
+% CHAPTER IMAGE HOOK
+% ---------------------------------------------------------------------------
+\newcommand{\chapterimage}[1]{%
+  \IfFileExists{#1.png}{%
+    \begin{center}
+      \includegraphics[width=0.40\textwidth]{#1.png}
+    \end{center}
+    \vspace{4pt}
+  }{}%
+}
+
+% ---------------------------------------------------------------------------
+% SCENE BREAK
+% ---------------------------------------------------------------------------
+\newcommand{\sceneBreak}{%
+  \par\vspace{14pt}
+  \begin{center}
+    \rule{2cm}{0.3pt}%
+  \end{center}
+  \vspace{14pt}\par
+}
+
+% ---------------------------------------------------------------------------
+% PARAGRAPH STYLE
+% ---------------------------------------------------------------------------
+\setlength{\parindent}{1.2em}
+\setlength{\parskip}{0pt}
+
+\usepackage{microtype}
+
+\begin{document}
+
+% ============================================================================
+% PAGE 1 -- full-bleed title image
+% ============================================================================
+\thispagestyle{empty}
+\fullbleedimage{title.png}
+\null
+\clearpage
+
+% ============================================================================
+% PAGE 2 -- title + disclaimer
+% ============================================================================
+\thispagestyle{empty}
+\begin{center}
+  \vspace*{0.28\textheight}
+  {\Huge\scshape A Dream of Ash and Iron \par}
+  \vspace{18pt}
+  {\Large\itshape Book One of \textit{A Song Unfinished} \par}
+  \vspace{60pt}
+  {\normalsize\itshape
+    This novel is a continuation of Game of Thrones\,/\,A Song of Ice and Fire,
+    picking up immediately after the events of Season Seven of the HBO television
+    series. It is written as an independent, novel-length alternative to Season
+    Eight --- unconstrained by the show's episode count, pacing, or runtime ---
+    with the aim of resolving the story the way the world it was built in
+    deserves: through patient politics, earned consequence, and character choices
+    that are allowed to cost what they cost. It draws its world, characters, and
+    history from George R.\,R.\ Martin's \upshape A Song of Ice and Fire
+    \itshape and from the series developed for television by David Benioff and
+    D.\,B.\ Weiss, and is offered in admiration of both, as one reader's attempt
+    to imagine the ending in between.\par
+  }
+\end{center}
+\clearpage
+
+% ============================================================================
+% MAIN MATTER
+% ============================================================================
+\pagenumbering{arabic}
+\pagestyle{plain}
+
+\input{chapter_manifest.tex}
+
+% ============================================================================
+% FINAL PAGE -- colophon
+% ============================================================================
+\clearpage
+\thispagestyle{empty}
+\begin{center}
+  \vspace*{0.08\textheight}
+  \rule{0.18\textwidth}{0.3pt}\enspace{\large ❦}\enspace\rule{0.18\textwidth}{0.3pt}
+  \vspace{24pt}
+
+  \includegraphics[width=0.40\textwidth]{Photo24.png}
+
+  \vspace{24pt}
+  {\large\itshape Thank you for reading.\par}
+  \vspace{30pt}
+  {\Large\scshape A Dream of Ash and Iron\par}
+  \vspace{12pt}
+  {\large Written by Navneet Patel\par}
+  \vspace{6pt}
+  {\normalsize\itshape An ASOIAF\,/\,Game of Thrones Fan Fiction\par}
+  \vspace{30pt}
+  {\small\itshape This story was written out of love for the world\\
+  George R.\,R.\ Martin built and the characters\\
+  he gave us to care about.\par}
+  \vspace{24pt}
+  {\small 2026\par}
+\end{center}
+
+\end{document}
