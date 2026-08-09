@@ -1,6 +1,6 @@
-# A Dream of Ash and Iron
+# A Dream of Ash and Iron - A Song Unfinished
 
-*Book One of A Song Unfinished*
+*A Song of Ice and Fire*
 
 An ASOIAF / Game of Thrones continuation novel, written as an independent, novel-length alternative to Season Eight — picking up immediately after the events of Season Seven and resolving the story through patient politics, earned consequence, and character choices that are allowed to cost what they cost.
 
